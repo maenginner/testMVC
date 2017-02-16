@@ -36,7 +36,6 @@ angular.module("sample.userRegistration", ["ngRoute"])
                         $scope.cust = {};
                         $scope.message = "Form data Submitted!";
                         $scope.result = "color-green";
-                        $location.path(data.data.redirectUrl);
                         $window.location.href = data.data.redirectUrl;
                     } 
                 }

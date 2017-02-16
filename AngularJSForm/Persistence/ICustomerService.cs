@@ -25,7 +25,7 @@ namespace AngularJSForm.Persistence
         /// The customer.
         /// </param>
         /// <returns>
-        /// The <see cref="JsonResult"/>.
+        /// The <see cref="bool"/>.
         /// </returns>
         bool CreateCustomer(Customer customer);
     }
