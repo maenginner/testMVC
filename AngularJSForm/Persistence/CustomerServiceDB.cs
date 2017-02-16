@@ -63,7 +63,7 @@ namespace AngularJSForm.Persistence
         /// </returns>
         private bool CustomerExists(string id)
         {
-            return this.db.Customer.Count(e => e.CustEmail == id) > 0;
+            return this.db.Customer.Count(e => e.CustEmail == id) > 1;
         }
     }
 }
