@@ -9,12 +9,11 @@
 
 namespace AngularJSForm.Controllers
 {
-    using System;
-    using System.Data.Entity;
     using System.Linq;
     using System.Web.Mvc;
 
-    using Models;
+    using AngularJSForm.Models;
+    using AngularJSForm.Persistence;
 
     /// <summary>
     /// The home controller.
@@ -22,9 +21,9 @@ namespace AngularJSForm.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// The data base.
+        /// The Data Base Service for Customer.
         /// </summary>
-        private readonly Entities db = new Entities();
+        private readonly ICustomerService icb = new CustomerServiceDB();
 
         /// <summary>
         /// GET: Home
@@ -51,44 +50,13 @@ namespace AngularJSForm.Controllers
         /// </returns>
         public JsonResult CreateCustomer(Customer customer)
         {
-            if (ModelState.IsValid)
+            JsonResult res = Json(new {success = false});
+
+            if (ModelState.IsValid && this.icb.CreateCustomer(customer))
             {
-                this.db.Customer.Add(customer);
-                try
-                {
-                    this.db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    if (CustomerExists(customer.CustEmail))
-                    {
-                        return
-                            Json(
-                                new
-                                    {
-                                        success = false,
-                                        errors =
-                                        ModelState.Keys.SelectMany(i => ModelState[i].Errors)
-                                            .Select(m => m.ErrorMessage)
-                                            .ToArray()
-                                    });
-                    }
-                }
-                var RedirectUrl = Url.Action("Welcome", "Home", new
-                {
-                    area = ""
-                });
-                return Json(new
-                {
-                    success = true,
-                    redirectUrl=RedirectUrl
-                });
+                res = Json(new { success = true, redirectUrl = "/Home/Welcome" });
             }
-            return Json(new
-            {
-                success = false,
-                errors = ModelState.Keys.SelectMany(i => ModelState[i].Errors).Select(m => m.ErrorMessage).ToArray()
-            });
+            return res;
         }
 
         /// <summary>
@@ -100,20 +68,6 @@ namespace AngularJSForm.Controllers
         public ActionResult Welcome()
         {
             return View();
-        }
-
-        /// <summary>
-        /// The customer exists.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
-        private bool CustomerExists(string id)
-        {
-            return this.db.Customer.Count(e => e.CustEmail == id) > 0;
         }
     }
 

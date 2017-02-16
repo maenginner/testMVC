@@ -30,18 +30,15 @@ angular.module("sample.userRegistration", ["ngRoute"])
                     data: $scope.cust
                 }).then(successCallback, errorCallback);
 
-                function successCallback(data, status, headers, config) {
+                function successCallback(data) {
                     $scope.errors = [];
-                    if (data.data.success === true) {
+                    if (data.data.success) {
                         $scope.cust = {};
                         $scope.message = "Form data Submitted!";
                         $scope.result = "color-green";
                         $location.path(data.data.redirectUrl);
-                        $window.location.href = "/Home/Welcome";
-                    } else {
-
-                        $scope.errors = data.errors;
-                    }
+                        $window.location.href = data.data.redirectUrl;
+                    } 
                 }
 
                 function errorCallback() {
