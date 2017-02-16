@@ -1,15 +1,21 @@
 ﻿
 <h1>congratulations!!!</h1>
 <h2>An extensive list with all our customers</h2>
-<div ng-controller="welcomeCtrl" ng-init="getAllData()">
-    <table>
-        <tr>
-            <th>Username</th>
-            <th>Email</th>
-        </tr>
-        <tr ng-repeat="customer in customers">
-            <td>{{customer.CustName}}</td>
-            <td>{{customer.CustEmail}}</td>
-        </tr>
-    </table>
+<div ng-controller="welcomeCtrl">
+    <form ng-submit="getAllData()" name="frmCustomer">
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+        <table ng-show="toShow">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+            <tr ng-repeat="customer in customers">
+                <td>{{customer.CustName}}</td>
+                <td>{{customer.CustEmail}}</td>
+            </tr>
+        </table>
 </div>
