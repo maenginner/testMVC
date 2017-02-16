@@ -11,7 +11,7 @@ angular.module("sample.welcome", ["ngRoute"])
             });
         }
     ])
-    .controller("welcomeCtrl",
+    .controller("welcomeCtrl", ["$scope","$http",
         function ($scope, $http) {
             $scope.toShow = false;
             $scope.getallData = function() {
@@ -26,4 +26,4 @@ angular.module("sample.welcome", ["ngRoute"])
                         console.log($scope.message);
                 }
             }
-        });
+        }]);
