@@ -24,5 +24,5 @@ angular.module("sample.welcome", ["ngRoute"])
                         console.log($scope.message);
                 }
             }
-            getallData();
+            //getallData();
         });
