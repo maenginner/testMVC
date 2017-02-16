@@ -69,6 +69,18 @@ namespace AngularJSForm.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// GET: Home/GetAllCustomers
+        /// The get all customers.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="JsonResult"/>.
+        /// </returns>
+        public JsonResult GetAllCustomers()
+        {
+            return this.icb.GetAllCustomers();
+        }
     }
 
 

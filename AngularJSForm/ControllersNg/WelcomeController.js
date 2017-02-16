@@ -12,6 +12,19 @@ angular.module("sample.welcome", ["ngRoute"])
         }
     ])
     .controller("welcomeCtrl",
-        function($scope, $http, $location, $window) {
-            console.log("ALL RIGHT");
+        function ($scope, $http) {
+            getallData();
+
+
+            function getallData() {
+                $http.get("/Home/GetAllCustomers").then(successGet, errorGet);
+                function successGet(data) {
+                        $scope.customers = data;
+                }
+                function errorGet() {
+                        $scope.message = "Unexpected Error while loading data!!";
+                        $scope.result = "color-red";
+                        console.log($scope.message);
+                }
+            }
         });

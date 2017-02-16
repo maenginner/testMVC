@@ -11,6 +11,9 @@ namespace AngularJSForm.Persistence
 {
     
     using System.Linq;
+    using System.Web.Helpers;
+    using System.Web.Mvc;
+
     using Models;
 
     /// <summary>
@@ -51,6 +54,20 @@ namespace AngularJSForm.Persistence
            
             return success;
         }
+
+       /// <summary>
+        /// The get all customers.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IQueryable"/>.
+        /// </returns>
+        public JsonResult GetAllCustomers()
+       {
+           JsonResult jr = new JsonResult();
+           jr.Data = this.db.Customer;
+           jr.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+           return jr;
+       }
 
         /// <summary>
         /// The customer exists.
