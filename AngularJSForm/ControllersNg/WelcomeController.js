@@ -13,10 +13,7 @@ angular.module("sample.welcome", ["ngRoute"])
     ])
     .controller("welcomeCtrl",
         function ($scope, $http) {
-            getallData();
-
-
-            function getallData() {
+            var getallData = function() {
                 $http.get("/Home/GetAllCustomers").then(successGet, errorGet);
                 function successGet(data) {
                         $scope.customers = data;
@@ -27,4 +24,5 @@ angular.module("sample.welcome", ["ngRoute"])
                         console.log($scope.message);
                 }
             }
+            getallData();
         });
