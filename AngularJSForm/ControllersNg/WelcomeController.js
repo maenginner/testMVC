@@ -4,7 +4,7 @@
 angular.module("sample.welcome", ["ngRoute"])
     .config([
         "$routeProvider", function($routeProvider) {
-            $routeProvider.when("/Welcome",
+            $routeProvider.when("/Home/Welcome",
             {
                 templateUrl: "../Views/Home/Welcome.cshtml",
                 controller: "welcomeCtrl"
