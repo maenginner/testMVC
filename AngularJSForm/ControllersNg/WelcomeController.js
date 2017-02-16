@@ -4,7 +4,7 @@
 angular.module("sample.welcome", ["ngRoute"])
     .config([
         "$routeProvider", function($routeProvider) {
-            $routeProvider.when("/Home/Welcome",
+            $routeProvider.when("/Welcome",
             {
                 templateUrl: "../Views/Home/Welcome.cshtml",
                 controller: "welcomeCtrl"
@@ -14,10 +14,10 @@ angular.module("sample.welcome", ["ngRoute"])
     .controller("welcomeCtrl", ["$scope","$http",
         function ($scope, $http) {
             $scope.toShow = false;
-            $scope.getallData = function() {
+            function getallData() {
                 $http.get("/Home/GetAllCustomers").then(successGet, errorGet);
                 function successGet(data) {
-                    $scope.customers = data;
+                    $scope.customers = data.data;
                     $scope.toShow = true;
                 }
                 function errorGet() {
@@ -26,4 +26,5 @@ angular.module("sample.welcome", ["ngRoute"])
                         console.log($scope.message);
                 }
             }
+            getallData();
         }]);
