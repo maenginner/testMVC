@@ -9,6 +9,7 @@
 
 namespace AngularJSForm.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -21,9 +22,17 @@ namespace AngularJSForm.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// The Data Base Service for Customer.
+        /// The service.
         /// </summary>
-        private readonly ICustomerService icb = new CustomerServiceDB();
+        private readonly IService<Customer> service;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeController"/> class.
+        /// </summary>
+        public HomeController()
+        {
+            this.service = new CustomerService();
+        }
 
         /// <summary>
         /// GET: Home
@@ -51,8 +60,8 @@ namespace AngularJSForm.Controllers
         public JsonResult CreateCustomer(Customer customer)
         {
             JsonResult res = Json(new {success = false});
-
-            if (ModelState.IsValid && this.icb.CreateCustomer(customer))
+            object[] parameters = { customer.CustName, customer.CustEmail };
+            if (ModelState.IsValid && this.service.Insert(parameters) == 1)
             {
                 res = Json(new { success = true, redirectUrl = "/Home/Welcome" });
             }
@@ -79,7 +88,15 @@ namespace AngularJSForm.Controllers
         /// </returns>
         public JsonResult GetAllCustomers()
         {
-            return this.icb.GetAllCustomers();
+            int Count = 20;
+            IEnumerable<object> customers = null;
+            try
+            {
+                object[] parameters = { Count };
+                customers = this.service.GetAll(parameters);
+            }
+            catch { }
+            return Json(customers.ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 

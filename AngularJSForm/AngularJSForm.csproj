@@ -270,8 +270,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\CustomerServiceDB.cs" />
-    <Compile Include="Persistence\ICustomerService.cs" />
+    <Compile Include="Persistence\CustomerService.cs" />
+    <Compile Include="Persistence\GenericRepository.cs" />
+    <Compile Include="Persistence\IRepository.cs" />
+    <Compile Include="Persistence\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
