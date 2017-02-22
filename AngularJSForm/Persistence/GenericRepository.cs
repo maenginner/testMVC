@@ -52,7 +52,7 @@ namespace AngularJSForm.Persistence
         /// </returns>
         public IEnumerable<T> ExecuteQuery(string spQuery, object[] parameters)
         {
-            using (this.context = new Entities())
+            using (this.context)
             {
                 return this.context.Database.SqlQuery<T>(spQuery, parameters).ToList();
             }
@@ -72,7 +72,7 @@ namespace AngularJSForm.Persistence
         /// </returns>
         public T ExecuteQuerySingle(string spQuery, object[] parameters)
         {
-            using (this.context = new Entities())
+            using (this.context)
             {
                 return this.context.Database.SqlQuery<T>(spQuery, parameters).FirstOrDefault();
             }
@@ -95,7 +95,7 @@ namespace AngularJSForm.Persistence
             int result = 0;
             try
             {
-                using (this.context = new Entities())
+                using (this.context)
                 {
                     result = this.context.Database.SqlQuery<int>(spQuery, parameters).FirstOrDefault();
                 }

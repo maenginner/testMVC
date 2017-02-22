@@ -29,9 +29,12 @@ namespace AngularJSForm.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="HomeController"/> class.
         /// </summary>
-        public HomeController()
+        /// <param name="service">
+        /// The service.
+        /// </param>
+        public HomeController(IService<Customer> service )
         {
-            this.service = new CustomerService();
+            this.service = service;
         }
 
         /// <summary>

@@ -20,9 +20,12 @@ namespace AngularJSForm.Persistence
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomerService"/> class.
         /// </summary>
-        public CustomerService()
+        /// <param name="custRepository">
+        /// The custom Repository.
+        /// </param>
+        public CustomerService(GenericRepository<Customer> custRepository)
         {
-            this.custRepository = new GenericRepository<Customer>(new Entities());
+            this.custRepository = custRepository;
         }
 
         /// <summary>
