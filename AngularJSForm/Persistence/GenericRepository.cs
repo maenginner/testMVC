@@ -19,7 +19,7 @@ namespace AngularJSForm.Persistence
         /// <summary>
         /// The context.
         /// </summary>
-        private Entities context = null;
+        private Entities1 context = null;
 
         /// <summary>
         /// The disposed.
@@ -32,7 +32,7 @@ namespace AngularJSForm.Persistence
         /// <param name="context">
         /// The context.
         /// </param>
-        public GenericRepository(Entities context)
+        public GenericRepository(Entities1 context)
         {
             this.context = context;
             this.disposed = false;

@@ -13,10 +13,10 @@ namespace AngularJSForm.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class Entities1 : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public Entities1()
+            : base("name=Entities1")
         {
         }
     
@@ -25,6 +25,6 @@ namespace AngularJSForm.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     }
 }

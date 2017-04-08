@@ -39,7 +39,7 @@ namespace AngularJSForm.Persistence
         /// </returns>
         public IEnumerable<Customer> GetAll(object[] parameters)
         {
-            string spQuery = "[Get_Customer] {0}";
+            string spQuery = "[Get_Customers] {0}";
             return this.custRepository.ExecuteQuery(spQuery, parameters);
         }
 
@@ -69,7 +69,7 @@ namespace AngularJSForm.Persistence
         /// </returns>
         public int Insert(object[] parameters)
         {
-            string spQuery = "[Set_Customer] {0}, {1}";
+            string spQuery = "[Set_Customers] {0}, {1}";
             return this.custRepository.ExecuteCommand(spQuery, parameters);
         }
 

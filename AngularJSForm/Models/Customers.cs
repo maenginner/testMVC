@@ -9,9 +9,12 @@
 
 namespace AngularJSForm.Models
 {
-  
+    using System;
+    using System.Collections.Generic;
+    
     public partial class Customer
     {
+        public long Id { get; set; }
         public string CustName { get; set; }
         public string CustEmail { get; set; }
     }
